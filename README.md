@@ -1,2 +1,3 @@
 # Windows-IconFixer
-A little tool to fix the broken icons of your Windows OS.
+
+A little tool written in C# to manually fix your IconCache.db file.

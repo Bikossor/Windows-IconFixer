@@ -4,7 +4,7 @@ using System.IO;
 
 namespace de.Bikossor.WindowsIconFixer
 {
-	public class IconFixer
+	public static class IconFixer
 	{
 		private static readonly String _iconCacheFileName = "IconCache.db";
 		private static readonly String _iconCacheFilePath = Path.Combine(

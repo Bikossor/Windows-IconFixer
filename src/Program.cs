@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace de.Bikossor.WindowsIconFixer
 {
-	class Program
+	public static class Program
 	{
 		static void Main(String[] args)
 		{
@@ -15,17 +15,17 @@ namespace de.Bikossor.WindowsIconFixer
 			Console.Write("Windows-IconFixer has been started...\n");
 
 			if(IconFixer.IconCacheExists) {
-				Console.Write("Deleting IconCache...\n");
+				Console.Write("Deleting IconCache... ");
 				IconFixer.DeleteIconCache();
-				Console.Write("IconCache deleted!\n");
+				Console.Write("Done!\n");
 
-				Console.Write("Killing explorer.exe...\n");
+				Console.Write("Killing explorer.exe... ");
 				IconFixer.KillExplorerProcess();
-				Console.Write("Killed explorer.exe!\n");
+				Console.Write("Done!\n");
 
-				Console.Write("Starting explorer.exe...\n");
+				Console.Write("Starting explorer.exe... ");
 				IconFixer.StartExplorerProcess();
-				Console.Write("Started explorer.exe!\n");
+				Console.Write("Done!\n");
 
                 Console.Write("Windows-IconFixer has finished!");
 			}

@@ -10,26 +10,29 @@ namespace de.Bikossor.WindowsIconFixer
 			Console.Write("Windows-IconFixer v{0} by André Lichtenthäler (Bikossor)\n",
                 Assembly.GetExecutingAssembly().GetName().Version.ToString()
             );
+
 			Console.Write("Website:  {0}\n\n", "https://github.com/Bikossor/Windows-IconFixer");
 			
 			Console.Write("Windows-IconFixer has been started...\n");
 
-			if(IconFixer.IconCacheExists) {
+			if (IconFixer.IconCacheExists)
+            {
 				Console.Write("Deleting IconCache... ");
 				IconFixer.DeleteIconCache();
-				Console.Write("Done!\n");
+				Console.WriteLine("Done!");
 
 				Console.Write("Killing explorer.exe... ");
 				IconFixer.KillExplorerProcess();
-				Console.Write("Done!\n");
+                Console.WriteLine("Done!");
 
-				Console.Write("Starting explorer.exe... ");
+                Console.Write("Starting explorer.exe... ");
 				IconFixer.StartExplorerProcess();
-				Console.Write("Done!\n");
+                Console.WriteLine("Done!");
 
                 Console.Write("Windows-IconFixer has finished!");
 			}
-			else {
+			else
+            {
 				Console.Write("Sorry but no IconCache.db was found on your computer.\n");
 			}
 

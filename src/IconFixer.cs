@@ -6,48 +6,66 @@ namespace de.Bikossor.WindowsIconFixer
 {
 	public static class IconFixer
 	{
-		private static readonly String _iconCacheFileName = "IconCache.db";
+        #region Private fields
+
+        private static readonly String _iconCacheFileName = "IconCache.db";
 		private static readonly String _iconCacheFilePath = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
             _iconCacheFileName
         );
 
-		private static Process[] GetExplorerProcesses {
-			get {
-				return Process.GetProcessesByName("explorer");
-			}
-		}
+        #endregion
 
-		public static Boolean IconCacheExists {
-			get {
-				return File.Exists(_iconCacheFilePath);
-			}
-		}
+        #region Private properties
 
-		public static void DeleteIconCache() {
-			try {
+        private static Process[] GetExplorerProcesses => Process.GetProcessesByName("explorer");
+        private static Boolean ExplorerProcessExists => GetExplorerProcesses.Length > 0;
+
+        #endregion
+
+        #region Public properties
+
+        public static Boolean IconCacheExists => File.Exists(_iconCacheFilePath);
+
+        #endregion
+
+        #region Public methods
+
+        public static void DeleteIconCache()
+        {
+			try
+            {
 				File.Delete(_iconCacheFilePath);
 			}
-			catch (Exception e) {
+			catch (Exception e)
+            {
 				Console.WriteLine(e.Message);
 			}
 		}
 
-		public static void KillExplorerProcess() {
-			try {
-				foreach (var p in GetExplorerProcesses) {
-					p.Kill();
+		public static void KillExplorerProcess()
+        {
+			try
+            {
+				foreach (var process in GetExplorerProcesses)
+                {
+					process.Kill();
 				}
 			}
-			catch (Exception e) {
+			catch (Exception e)
+            {
 				Console.WriteLine(e.Message);
 			}
 		}
 
-		public static void StartExplorerProcess() {
-			if(GetExplorerProcesses.Length == 0) {
+		public static void StartExplorerProcess()
+        {
+			if (!ExplorerProcessExists)
+            {
 				Process.Start("explorer");
 			}
 		}
-	}
+
+        #endregion
+    }
 }
